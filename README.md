@@ -1,2 +1,2 @@
 # DailyPractice
-  DailyPractice for Android Code!
+  DailyPractice of Android Code!
