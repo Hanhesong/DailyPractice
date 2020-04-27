@@ -1,5 +1,6 @@
 package com.hhs.dailypractice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -7,12 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvDisplay;
     private Button btnChange;
+    private Button btnNext;
     public static final int UPDATE_TEXT = 1;
 
     @Override
@@ -21,15 +22,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         tvDisplay = findViewById(R.id.tvDisplay);
         btnChange = findViewById(R.id.btnChange);
+        btnNext = findViewById(R.id.btnNext);
         btnChange.setOnClickListener(this);
+        btnNext.setOnClickListener(this);
 
     }
 
-    private  Handler handler = new Handler() {
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case UPDATE_TEXT:
                     tvDisplay.setText("Nice to meet you");
                     break;
@@ -51,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         handler.sendMessage(message);
                     }
                 }).start();
+                break;
+            case R.id.btnNext:
+                startActivity(new Intent(this, FileStorageActivity.class));
                 break;
 
             default:
