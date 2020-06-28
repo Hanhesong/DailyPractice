@@ -81,8 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }).start();
                 break;
             case R.id.btnNext:
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://www.baidu.com"));
+                Intent intent = new Intent(this,SecondActivity.class);
                 startActivity(intent);
                 break;
 
