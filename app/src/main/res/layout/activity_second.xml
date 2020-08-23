@@ -5,16 +5,36 @@
     android:layout_height="match_parent"
     tools:context=".SecondActivity">
 
-    <fragment
-        android:id="@+id/fragment_first"
-        android:name="com.hhs.dailypractice.FirstFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragment_container"
-        />
+        android:layout_above="@+id/buttonPanel" />
+
+    <LinearLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_WebView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="WebView" />
+
+        <Button
+            android:id="@+id/btn_urlConnection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_WebView"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="HttpURLConnection" />
+
+    </LinearLayout>
 
 </RelativeLayout>
