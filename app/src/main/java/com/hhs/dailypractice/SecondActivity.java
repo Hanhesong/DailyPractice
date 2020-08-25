@@ -12,6 +12,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
 
     private Button btnWebView;
     private Button btnUrlConnection;
+    private Button btnOkHttp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         btnWebView.setOnClickListener(this);
         btnUrlConnection = findViewById(R.id.btn_urlConnection);
         btnUrlConnection.setOnClickListener(this);
+        btnOkHttp = findViewById(R.id.btn_okhttp);
+        btnOkHttp.setOnClickListener(this);
     }
 
     @Override
@@ -36,6 +39,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btn_urlConnection:
                 replaceFragment(new HttpUrlConnectionFramgnet());
                 break;
+
+
             default:
                 break;
 
