@@ -1,9 +1,9 @@
 package com.hhs.dailypractice;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +18,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class HttpUrlConnectionFramgnet extends Fragment {
 
     private Button btnSendRequest;
     private TextView ResponseText;
+
 
     @Nullable
     @Override
@@ -42,9 +47,32 @@ public class HttpUrlConnectionFramgnet extends Fragment {
         btnSendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendRequestWithHttpURLConnection();
+              //  sendRequestWithHttpURLConnection();
+                sendRequestWithOkHttp();
             }
         });
+    }
+
+    private void sendRequestWithOkHttp(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url("https://www.baidu.com")
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    showResponse(responseData);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+
     }
 
     private void sendRequestWithHttpURLConnection() {
