@@ -16,6 +16,7 @@
             android:name=".MyService"
             android:enabled="true"
             android:exported="true"></service>
+        <service android:name=".MyIntentService"/>
 
         <activity android:name=".SecondActivity"></activity>
         <activity android:name=".FileStorageActivity" />

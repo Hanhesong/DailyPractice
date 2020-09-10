@@ -16,30 +16,41 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    @BindView(R.id.btnChange)
+    Button btnChange;
+    @BindView(R.id.btnNext)
+    Button btnNext;
+    @BindView(R.id.bind_service)
+    Button bindService;
+    @BindView(R.id.unbind_service)
+    Button unbindService;
+    @BindView(R.id.btn_intent_service)
+    Button btnIntentService;
     private TextView tvDisplay;
-    private Button btnChange;
-    private Button btnNext;
-    private Button btnBind;
-    private Button btnUnBind;
     public static final int UPDATE_TEXT = 1;
     private MyService.DownloadBinder downloadBinder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         tvDisplay = findViewById(R.id.tvDisplay);
         btnChange = findViewById(R.id.btnChange);
         btnNext = findViewById(R.id.btnNext);
-        btnBind = findViewById(R.id.bind_service);
-        btnUnBind = findViewById(R.id.unbind_service);
-        btnBind.setOnClickListener(this);
-        btnUnBind.setOnClickListener(this);
+        bindService = findViewById(R.id.bind_service);
+        unbindService = findViewById(R.id.unbind_service);
+        bindService.setOnClickListener(this);
+        unbindService.setOnClickListener(this);
         btnChange.setOnClickListener(this);
         btnNext.setOnClickListener(this);
-
+        btnIntentService.setOnClickListener(this);
     }
 
     @Override
@@ -102,6 +113,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.unbind_service:
                 unbindService(connection);
+                break;
+            case R.id.btn_intent_service:
+                Intent intent1 = new Intent(this, MyIntentService.class);
+                startService(intent1);
                 break;
             default:
                 break;
