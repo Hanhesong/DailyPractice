@@ -3,12 +3,15 @@ package com.hhs.dailypractice;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -88,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -95,11 +99,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        Message message = new Message();
+                        Message message = handler.obtainMessage();
                         message.what = UPDATE_TEXT;
                         handler.sendMessage(message);
                     }
                 }).start();
+
                 break;
             case R.id.btnNext:
                 Intent intent = new Intent(this, SecondActivity.class);
@@ -140,5 +145,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
 
-
+    public void getSharedPreference(String key) {
+        SharedPreferences preferences = getSharedPreferences(key, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("zz", "ee");
+        editor.apply();
+    }
 }
